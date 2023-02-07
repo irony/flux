@@ -5,11 +5,9 @@ metadata:
 ---
 apiVersion: v1
 kind: Pod
+namespace: test
 metadata:
-  namespace: test
   name: test
-  labels:
-    name: test
 spec:
   containers:
   - name: test
