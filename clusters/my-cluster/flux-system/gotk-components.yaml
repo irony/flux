@@ -6636,6 +6636,7 @@ spec:
       - args:
         - --events-addr=http://notification-controller.flux-system.svc.cluster.local./
         - --watch-all-namespaces=true
+        - --enable-helm
         - --log-level=info
         - --log-encoding=json
         - --enable-leader-election
