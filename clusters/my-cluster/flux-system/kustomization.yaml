@@ -3,3 +3,10 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
+
+helmCharts:
+- name: redis
+  releaseName: redis
+  namespace: redis
+  version: 15.0.1
+  repo: https://charts.bitnami.com/bitnami
