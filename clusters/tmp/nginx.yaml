@@ -19,9 +19,7 @@ metadata:
   namespace: ingress-nginx
 data:
   values.yaml: |-
-    controller:
-      service:
-        ipFamilyPolicy: PreferDualStack
+
 
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
