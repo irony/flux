@@ -1,0 +1,20 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: landing-page
+  namespace: flux-system
+spec:
+  image: registry.iteam.services/happylou_landing-page
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: landing-page
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: landing-page
+  policy:
+    semver:
+      range: 1.x.x
