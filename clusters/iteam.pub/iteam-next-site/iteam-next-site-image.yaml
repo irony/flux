@@ -1,8 +1,0 @@
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: iteam-next-site-image
-  namespace: flux-system
-spec:
-  image: registry.iteam.services/iteam1337_iteam-next-site
-  interval: 5m0s
