@@ -4,6 +4,9 @@ kind: ClusterIssuer
 metadata:
   name: letsencrypt
 spec:
+  dependsOn:
+    - name: letsencrypt-prod
+      namespace: cert-manager
   acme:
     # Replace the email address with your own contact email
     email: christian@landgren.nu
