@@ -47,3 +47,4 @@ spec:
           secretName: wekan-iteam-pub-tls
     mongodb:
       replicaCount: 1
+      mailUrl: "smtp://smtp-relay.gmail.com:587"
