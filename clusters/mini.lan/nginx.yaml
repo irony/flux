@@ -1,28 +1,17 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
-metadata:
-  name: ingress-nginx
-  namespace: flux-system
-spec:
-  interval: 15m
-  url: https://kubernetes.github.io/ingress-nginx
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: ingress-nginx
 ---
-apiVersion: v1
-kind: ConfigMap
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
 metadata:
-  name: ingress-nginx-values
+  name: ingress-nginx
   namespace: ingress-nginx
-data:
-  values.yaml: |-
-    controller:
-      service:
-        ipFamilyPolicy: PreferDualStack
-
+spec:
+  interval: 24h
+  url: https://kubernetes.github.io/ingress-nginx
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -30,6 +19,7 @@ metadata:
   name: ingress-nginx
   namespace: ingress-nginx
 spec:
+  interval: 30m
   chart:
     spec:
       chart: ingress-nginx
@@ -37,11 +27,11 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
-        namespace: flux-system
-  interval: 1m
-  timeout: 5m
-  releaseName: ingress-nginx
-  valuesFrom:
-  - kind: ConfigMap
-    name: ingress-nginx-values
-    valuesKey: values.yaml
+        namespace: ingress-nginx
+      interval: 12h
+  values:
+    controller:
+      service:
+        ipFamilyPolicy: PreferDualStack
+    admissionWebhooks:
+      enabled: false
